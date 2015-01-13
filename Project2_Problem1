@@ -1,0 +1,96 @@
+//--------------Modified on 11/27/2014---FINAL SOLUTION FOR PROJECT2, PROBLEM1---------------------
+//function that compares x and y if they are both numbers
+function comparenumbers(x, y) {
+    if (x < y){
+        return "<";
+    }
+    else if (x > y){
+        return ">";
+    }
+    else {
+      return "=";  
+    }
+}
+//deletes a word in the default error message array
+function deleteword(x){error.splice(error.indexOf(x),1);
+}
+//deletes then replaces a word in the default error message array
+function deletereplace(x,y){error.splice(error.indexOf(x),1,y);
+}
+function getRelationship(x, y){
+    //default error message array
+   error = ['Can\'t', 'compare', 'relationships', 'because', 'x', 'and', 'y', 'is', 'are', 'not', 'a', 'numbers'];
+   /*testing for all cases of x and y, each error statement is unique and
+   replaces the 'is' or 'are', as well as the x or y value or both*/
+    if (isNaN(x) && y === undefined){
+        deleteword('is');
+        deletereplace('x',x);
+        deletereplace('y','undefined');
+        deleteword('a');
+        var  newerror = error.join();
+        newerror = newerror.replace(/,/g," ");
+        //this technique copied directly from: http://www.tek-tips.com/viewthread.cfm?qid=1134940
+        newerror = newerror.replace("  "," ");
+        return newerror;
+    }
+    else if (!isNaN(x) && y === undefined){
+        deleteword('are');
+        deleteword('and');
+        deletereplace('numbers','number');
+        deletereplace('y','undefined');
+        deleteword('x');
+        var  newerror2 = error.join();
+        newerror2 = newerror2.replace(/,/g," ");
+        //this technique copied directly from: http://www.tek-tips.com/viewthread.cfm?qid=1134940
+        newerror2 = newerror2.replace("  "," ");
+        return newerror2;
+    }
+    else if (isNaN(x) && isNaN(y)){
+        deleteword('is');
+        deletereplace('x',x);
+        deletereplace('y',y);
+        deleteword('a');
+         var  newerror3 = error.join();
+        newerror3 = newerror3.replace(/,/g," ");
+        newerror3 = newerror3.replace("  "," ");
+        //this technique copied directly from: http://www.tek-tips.com/viewthread.cfm?qid=1134940
+        return newerror3;
+    }
+    else if (!isNaN(x) && isNaN(y)){
+        deleteword('are');
+        deleteword('and');
+        deletereplace('numbers','number');
+        deletereplace('y',y);
+        deleteword('x');
+        var  newerror4 = error.join();
+        newerror4 = newerror4.replace(/,/g," ");
+        //this technique copied directly from: http://www.tek-tips.com/viewthread.cfm?qid=1134940
+        newerror4 = newerror4.replace("  "," ");
+        return newerror4;
+    }
+    else if (isNaN(x) && !isNaN(y)){
+        deleteword('are');
+        deleteword('and');
+        deletereplace('numbers','number');
+        deleteword('y');
+        deletereplace('x',x);
+        var  newerror5 = error.join();
+        newerror5 = newerror5.replace(/,/g," ");
+        //this technique copied directly from: http://www.tek-tips.com/viewthread.cfm?qid=1134940
+        newerror5 = newerror5.replace("  "," ");
+        return newerror5;
+    }
+    else {
+      return comparenumbers(x, y); 
+    }
+}
+
+// Try logging these functions to test your code!
+console.log(getRelationship(1,4));
+console.log(getRelationship(1,1));
+console.log(getRelationship("that",2));
+console.log(getRelationship("this"," something else"));
+console.log(getRelationship(3));
+console.log(getRelationship("hi"));
+console.log(getRelationship(NaN));
+console.log(getRelationship(NaN, undefined));

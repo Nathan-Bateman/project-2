@@ -1,0 +1,40 @@
+------------------------------Final Solution for Project 2, Problem 2----------------------------------
+var moonWalkers = [
+  "Neil Armstrong",
+  "Buzz Aldrin",
+  "Pete Conrad",
+  "Alan Bean",
+  "Alan Shepard",
+  "Edgar Mitchell",
+  "David Scott",
+  "James Irwin",
+  "John Young",
+  "Charles Duke",
+  "Eugene Cernan",
+  "Harrison Schmitt"
+];
+function alphabetizer(names) {
+    var empty = [];
+ //empty array to append each edited item from the for loop   
+    for (i=0;i<names.length;i++){
+        var split = names[i].split(" ");
+//this creates a new variable and then splits the given "i" where there is a space into another array
+        var rev =split.reverse();
+//this switches the names to make the last name first        
+        if (rev.length === 3){
+           var rev1 = rev[0] + ", " + rev[2] + " " + rev[1];
+            empty.push(rev1);
+        }else {
+             var rev2 = rev[0] +", " + rev[1]; 
+             empty.push(rev2);
+            }
+        }
+//the if statement tests to see if there is a middle name and then
+//if so it concatenates the 1-3 items in the string, if not just the 1-2 items,
+//then it pushes them to the "empty" array
+ return empty.sort();
+//the empty array is sorted into alphabetical order by last name and returned
+}
+
+// Try logging your results to test your code!
+console.log(alphabetizer(moonWalkers));
